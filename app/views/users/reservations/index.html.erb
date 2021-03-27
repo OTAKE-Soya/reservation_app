@@ -15,19 +15,22 @@
       </tr>
       <% @repete_counts.times do |repete_count| %>
         <tr>
-          <td><%= (@today + repete_count).strftime("%-m月%-d日") %></td>
-            <% 6.times do |n| %>
-              <td>
-                <% reservation = @reservations.find_by(date: (@today + repete_count), period: n)%>
-                <% if reservation %>
-                  <%= link_to edit_reservation_path(reservation) do %>
-                    <%= reservation.name %>
-                  <% end %>
+          <td>
+            <% date = (@today + repete_count) %>
+            <%= date.strftime("%-m月%-d日") %>
+          </td>
+          <% 6.times do |period| %>
+            <td>
+              <% reservation = @reservations.find_by(date: date, period: period)%>
+              <% if reservation %>
+                <%= link_to edit_reservation_path(reservation) do %>
+                  <%= reservation.name %>
                 <% end %>
-                
-                
-              </td>
-            <% end %>
+              <% else %>
+                <%= link_to "予約可", new_reservation_path(date: date, period: period), class: "btn btn-secondary" %>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </table>

@@ -10,6 +10,8 @@ class Users::ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
+    @reservation.date = params[:date]
+    @reservation.period = params[:period]
     p Reservation.all
   end
   
