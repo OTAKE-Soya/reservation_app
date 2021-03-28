@@ -28,6 +28,10 @@
         <%= f.submit "予約変更", class: "form-control" %>
       </div>
     <% end %>
+    
+  </div>
+  <div class="row">
+    <%= link_to "削除", reservation_path(params[:id]), class: "btn btn-danger btn-sm", method: :delete %>
   </div>
 </div>
 

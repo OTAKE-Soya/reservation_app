@@ -16,7 +16,7 @@
       <% @repete_counts.times do |repete_count| %>
         <tr>
           <td>
-            <% date = (@today + repete_count) %>
+            <% date = (@today + repete_count + (@page * @repete_counts)) %>
             <%= date.strftime("%-m月%-d日") %>
           </td>
           <% 6.times do |period| %>
@@ -40,5 +40,17 @@
         </tr>
       <% end %>
     </table>
+  </div>
+  <div class="row">
+    <div class="col">
+      <% if @page == 1 %>
+        <%= link_to "前のページ", reservations_path %>
+      <% elsif @page > 0 %>
+        <%= link_to "前のページ", reservations_path(page: @page - 1) %>
+      <% end %>
+    </div>
+    <div class="col text-right">
+      <%= link_to "次のページ", reservations_path(page: @page + 1) %>
+    </div>
   </div>
 </div>

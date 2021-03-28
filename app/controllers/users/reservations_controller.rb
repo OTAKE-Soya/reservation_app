@@ -1,11 +1,17 @@
 class Users::ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
-    p @today = Date.today
+    @today = Date.today
     @repete_counts = 30
+    if params[:page]
+      p @page = params[:page].to_i
+    else
+      @page = 0
+    end
   end
 
   def show
+    @reservation = Reservation.find(params[:id])
   end
 
   def new
@@ -35,6 +41,12 @@ class Users::ReservationsController < ApplicationController
     unless Reservation.find_by(date: reservation.date, period: reservation.period)
       reservation.save
     end
+    redirect_to reservations_path
+  end
+  
+  def destroy
+    reservation = Reservation.find(params[:id])
+    reservation.destroy
     redirect_to reservations_path
   end
   
