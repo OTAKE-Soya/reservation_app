@@ -1,8 +1,8 @@
 class Users::ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
-    p @today = Date.today + 1
-    @repete_counts = 45 
+    p @today = Date.today
+    @repete_counts = 30
   end
 
   def show

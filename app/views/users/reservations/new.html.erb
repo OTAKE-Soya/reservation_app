@@ -23,7 +23,7 @@
           <%= f.radio_button :period, 5 %>5限
         </div>
       </div>
-      <%= f.hidden_field :user_id, value: current_user %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
       <div class="form-group">
         <%= f.submit "予約", class: "form-control" %>
       </div>

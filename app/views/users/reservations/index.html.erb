@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    
+    <h2>予約表</h2>
   </div>
   <div class="row">
-    <table class="table">
+    <table class="table table-bordered">
       <tr>
         <th></th>
         <th>1限</th>
@@ -23,11 +23,17 @@
             <td>
               <% reservation = @reservations.find_by(date: date, period: period)%>
               <% if reservation %>
-                <%= link_to edit_reservation_path(reservation) do %>
-                  <%= reservation.name %>
+                <% if reservation.user_id == current_user.id %>
+                  <%= link_to edit_reservation_path(reservation) do %>
+                    <%= reservation.name %>
+                  <% end %>
+                <% else %>
+                  <%= link_to reservation_path(reservation) do %>
+                    <%= reservation.name %>
+                  <% end %>
                 <% end %>
               <% else %>
-                <%= link_to "予約可", new_reservation_path(date: date, period: period), class: "btn btn-secondary" %>
+                <%= link_to "予約可", new_reservation_path(date: date, period: period), class: "btn btn-secondary btn-sm" %>
               <% end %>
             </td>
           <% end %>
