@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  scope module: :users do
+    resources :reservations
+  end
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
