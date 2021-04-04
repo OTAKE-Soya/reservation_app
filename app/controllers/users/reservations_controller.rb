@@ -2,7 +2,7 @@ class Users::ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
     @today = Date.today
-    @repete_counts = 30
+    @repete_counts = 21
     if params[:page]
       p @page = params[:page].to_i
     else
