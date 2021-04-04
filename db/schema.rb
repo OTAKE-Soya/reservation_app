@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_055116) do
+ActiveRecord::Schema.define(version: 2021_04_04_155450) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 2021_03_26_055116) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "timetables", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "day_of_week"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -41,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_03_26_055116) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

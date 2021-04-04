@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   scope module: :users do
     resources :reservations
+    resource :user, only: [:edit, :show, :update] do
+      resource :timetable, only: [:edit]
+      resources :timetables, only: [:create, :destroy]
+    end
   end
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',

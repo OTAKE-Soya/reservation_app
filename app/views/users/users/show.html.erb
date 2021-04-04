@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <tr>
+        <th>名前</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>メール</th>
+        <td><%= @user.email %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+      </tr>
+      <% 5.times do |period| %>
+        <tr>
+          <th><%= period + 1 %></th>
+          <% 5.times do |day_of_week| %>
+            <td>
+              <% if @timetables.find_by(period: period, day_of_week: day_of_week) %>
+                〇
+              <% else %>
+                ×
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "授業コマ編集", edit_user_timetable_path %>
+  </div>
+</div>
