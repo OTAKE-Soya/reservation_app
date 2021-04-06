@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_many :timeoutables
+  has_many :timetables
+  has_many :band_members
   has_many :bands, through: :band_members
 end

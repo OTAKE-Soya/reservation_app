@@ -38,4 +38,12 @@
     </table>
     <%= link_to "授業コマ編集", edit_user_timetable_path %>
   </div>
+  <div class="row">
+    <ul>
+      <% @user.bands.each do |band| %>
+        <li><%= band.name %></li>
+      <% end %>
+    </ul>
+    
+  </div>
 </div>

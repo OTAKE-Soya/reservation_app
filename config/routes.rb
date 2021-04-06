@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'bands/show'
-    get 'bands/edit'
-    get 'bands/index'
-    get 'bands/new'
-  end
   scope module: :users do
     resources :reservations
     resource :user, only: [:edit, :show, :update] do
       resource :timetable, only: [:edit]
       resources :timetables, only: [:create, :destroy]
+      
     end
+    resources :bands
   end
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
