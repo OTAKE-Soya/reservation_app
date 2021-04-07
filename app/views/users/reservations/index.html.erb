@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <h2>予約表</h2>
+  </div>
+  <div class="row">
+    <table class="table table-bordered">
+      <tr>
+        <th></th>
+        <th>1限</th>
+        <th>2限</th>
+        <th>昼</th>
+        <th>3限</th>
+        <th>4限</th>
+        <th>5限</th>
+      </tr>
+      <% @repete_counts.times do |repete_count| %>
+        <tr>
+          <td>
+            <% date = (@today + repete_count + (@page * @repete_counts)) %>
+            <%= date.strftime("%-m月%-d日") %>
+          </td>
+          <% 6.times do |period| %>
+            <td>
+              <% reservation = @reservations.find_by(date: date, period: period)%>
+              <% if reservation %>
+                <% if reservation.user_id == current_user.id %>
+                  <%= link_to edit_reservation_path(reservation) do %>
+                    <%= reservation.name %>
+                  <% end %>
+                <% else %>
+                  <%= link_to reservation_path(reservation) do %>
+                    <%= reservation.name %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to "予約可", new_reservation_path(date: date, period: period), class: "btn btn-secondary btn-sm" %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col">
+      <% if @page == 1 %>
+        <%= link_to "前のページ", reservations_path %>
+      <% elsif @page > 0 %>
+        <%= link_to "前のページ", reservations_path(page: @page - 1) %>
+      <% end %>
+    </div>
+    <div class="col text-right">
+      <%= link_to "次のページ", reservations_path(page: @page + 1) %>
+    </div>
+  </div>
+</div>

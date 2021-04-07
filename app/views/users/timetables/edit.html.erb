@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <h2>コマ編集</h2>
+  </div>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+      </tr>
+      <% 5.times do |period| %>
+        <tr>
+          <th><%= period + 1 %></th>
+          <% 5.times do |day_of_week| %>
+            <td>
+              <% timetable = @timetables.find_by(period: period, day_of_week: day_of_week) %>
+              <% if timetable %>
+                <%= link_to "〇", user_timetable_path(timetable), method: :delete %>
+              <% else %>
+                <%= link_to "×", user_timetables_path(params: { timetable: { day_of_week: day_of_week , period: period } }), method: :post %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "部員情報に戻る", user_path %>
+  </div>
+</div>

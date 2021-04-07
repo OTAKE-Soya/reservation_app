@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <h2>バンド登録</h2>
+  </div>
+  <div class="row">
+    <%= form_with model: @band, local: :ture do |f| %>
+      <div class="form-group">
+        <%= f.label "バンド名" %>
+        <%= f.text_field :name, class: "form-control" %>  
+      </div>
+      <%= f.fields_for :band_members do |g| %>
+          <div class="form-group">
+            <%= g.label "バンドメンバー" %>
+            <%= g.collection_select :user_id, @users, :id, :name, include_blank: true %>
+          </div>
+      <% end %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
