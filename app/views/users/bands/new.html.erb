@@ -11,7 +11,7 @@
       <%= f.fields_for :band_members do |g| %>
           <div class="form-group">
             <%= g.label "バンドメンバー" %>
-            <%= g.collection_select(:user_id, @users, :id, :name, include_blank: true ) %>
+            <%= g.collection_select :user_id, @users, :id, :name, include_blank: true %>
           </div>
       <% end %>
       <%= f.submit %>
