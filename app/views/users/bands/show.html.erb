@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <h2><%= @band.name %>のメンバー</h2>
+  </div>
+  <div class="row">
+    <ul>
+      <% @band.users.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+      </tr>
+      <% 5.times do |period| %>
+        <tr>
+          <th><%= period + 1 %></th>
+          <% 5.times do |day_of_week| %>
+            <td>
+              <% class_count = 0 %>
+              <% @band.users.each do |user| %>
+                <% if user.timetables.find_by(period: period, day_of_week: day_of_week) %>
+                  <% class_count += 1 %>
+                <% end %>
+              <% end %>
+              <% if class_count > 0 %>
+                〇(<%= class_count %>)
+              <% else %>
+                ×
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+

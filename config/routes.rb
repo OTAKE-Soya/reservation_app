@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resource :user, only: [:edit, :show, :update] do
       resource :timetable, only: [:edit]
       resources :timetables, only: [:create, :destroy]
+      
     end
+    resources :bands
   end
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',

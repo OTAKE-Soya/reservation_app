@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_155450) do
+ActiveRecord::Schema.define(version: 2021_04_07_000620) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 2021_04_04_155450) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "band_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "band_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -31,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_155450) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "band_id"
   end
 
   create_table "timetables", force: :cascade do |t|
