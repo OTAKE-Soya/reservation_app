@@ -4,7 +4,7 @@ class Users::ReservationsController < ApplicationController
     @today = Date.today
     @repete_counts = 21
     if params[:page]
-      p @page = params[:page].to_i
+      @page = params[:page].to_i
     else
       @page = 0
     end
@@ -18,7 +18,7 @@ class Users::ReservationsController < ApplicationController
     @reservation = Reservation.new
     @reservation.date = params[:date]
     @reservation.period = params[:period]
-    p Reservation.all
+    @bands = Band.joins(:band_members).where(band_members: {user_id: current_user.id})
   end
   
   def create

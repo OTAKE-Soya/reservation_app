@@ -5,8 +5,12 @@
   <div class="row">
     <%= form_with model: @reservation, local: true do |f| %>
       <div class="form-group">
-        <%= f.label "予約バンド名" %>
+        <%= f.label "予約名" %>
         <%= f.text_field :name, class: "form-control" %>      
+      </div>
+      <div class="form-group">
+        <%= f.label "予約バンド" %>
+        <%= f.collection_select :band_id, @bands, :id, :name, include_blank: true , class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label "月日" %>
@@ -15,11 +19,11 @@
       <div class="form-group">
         <%= f.label "時間枠" %>
         <div>
-          <%= f.radio_button :period, 0 %>1限　
-          <%= f.radio_button :period, 1 %>2限　
-          <%= f.radio_button :period, 2 %>昼　
-          <%= f.radio_button :period, 3 %>3限　
-          <%= f.radio_button :period, 4 %>4限　
+          <%= f.radio_button :period, 0 %>1限
+          <%= f.radio_button :period, 1 %>2限
+          <%= f.radio_button :period, 2 %>昼
+          <%= f.radio_button :period, 3 %>3限
+          <%= f.radio_button :period, 4 %>4限
           <%= f.radio_button :period, 5 %>5限
         </div>
       </div>

@@ -1,3 +1,16 @@
-<% @bands.each do |band| %>
-  <%= link_to band.name, band_path(band) %>
-<% end %>
+<div class="container">
+    <div class="row">
+        <h2>バンド一覧</h2>
+    </div>
+    <div class="row">
+        <ul>
+            <% @bands.each do |band| %>
+                <li><%= link_to band.name, band_path(band) %></li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="row">
+        <%= link_to "バンド登録", new_band_path %>
+    </div>
+</div>
+
