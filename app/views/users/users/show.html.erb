@@ -27,9 +27,9 @@
           <% 5.times do |day_of_week| %>
             <td>
               <% if @timetables.find_by(period: period, day_of_week: day_of_week) %>
-                〇
-              <% else %>
                 ×
+              <% else %>
+                〇
               <% end %>
             </td>
           <% end %>

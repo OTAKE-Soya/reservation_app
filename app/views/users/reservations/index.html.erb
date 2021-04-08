@@ -23,7 +23,7 @@
             <td>
               <% reservation = @reservations.find_by(date: date, period: period)%>
               <% if reservation %>
-                <% if reservation.user_id == current_user.id %>
+                <% if reservation.band.member_included?(current_user) %>
                   <%= link_to edit_reservation_path(reservation) do %>
                     <%= reservation.name %>
                   <% end %>
