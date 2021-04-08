@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
     <h2>コマ編集</h2>
+    
   </div>
   <div class="row">
+    <p>× = 授業あり　〇 = 授業なし</p>
     <table class="table">
       <tr>
         <th></th>
@@ -19,9 +21,9 @@
             <td>
               <% timetable = @timetables.find_by(period: period, day_of_week: day_of_week) %>
               <% if timetable %>
-                <%= link_to "〇", user_timetable_path(timetable), method: :delete %>
+                <%= link_to "×", user_timetable_path(timetable), method: :delete %>
               <% else %>
-                <%= link_to "×", user_timetables_path(params: { timetable: { day_of_week: day_of_week , period: period } }), method: :post %>
+                <%= link_to "〇", user_timetables_path(params: { timetable: { day_of_week: day_of_week , period: period } }), method: :post %>
               <% end %>
             </td>
           <% end %>

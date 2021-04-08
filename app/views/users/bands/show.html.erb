@@ -31,15 +31,18 @@
                 <% end %>
               <% end %>
               <% if class_count > 0 %>
-                〇(<%= class_count %>)
+                ×(<%= class_count %>)
               <% else %>
-                ×
+                〇
               <% end %>
             </td>
           <% end %>
         </tr>
       <% end %>
     </table>
+  </div>
+  <div class="row">
+    <%= link_to "バンド一覧に戻る", bands_path %>
   </div>
 </div>
 
