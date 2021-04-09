@@ -22,11 +22,14 @@ class Users::ReservationsController < ApplicationController
   end
   
   def create
-    reservation = Reservation.new(reservation_params)
-    unless Reservation.find_by(date: reservation.date, period: reservation.period)
-      reservation.save
+    @reservation = Reservation.new(reservation_params)
+    @bands = Band.joins(:band_members).where(band_members: {user_id: current_user.id})
+    unless Reservation.find_by(date: @reservation.date, period: @reservation.period)
+      if @reservation.save
+        redirect_to reservations_path
+      end
     end
-    redirect_to reservations_path
+    render :new
   end
 
   def edit
