@@ -1,8 +1,18 @@
 <div class="container">
   <div class="row">
-    <h2>予約のshow</h2>
+    <h2><%= @reservation.name %>の予約</h2>
   </div>
   <div class="row">
-
+    <strong><%= @reservation.date.strftime("%-m月%-d日") %></strong>
+  </div>
+  <div class="row">
+    <ul>
+      <% @reservation.band.users.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+    <%= link_to "予約一覧にもどる", reservations_path %>
   </div>
 </div>
