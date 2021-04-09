@@ -27,9 +27,11 @@ class Users::ReservationsController < ApplicationController
     unless Reservation.find_by(date: @reservation.date, period: @reservation.period)
       if @reservation.save
         redirect_to reservations_path
+      else
+        render :new
       end
     end
-    render :new
+    
   end
 
   def edit
