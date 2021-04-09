@@ -4,5 +4,5 @@ class Reservation < ApplicationRecord
   validates :name, presence: true
   validates :band_id, presence: true
   validates :period, presence: true
-  validates :date, presence: true
+  validates :date, presence: true, uniqueness: { scope: :period} 
 end
