@@ -4,6 +4,14 @@ class Users::BandsController < ApplicationController
   end
 
   def edit
+    @band = Band.find(params[:id])
+    @users = @users = User.where.not(id: current_user.id)
+  end
+  
+  def update
+    band = Band.find(params[:id])
+    band.update(band_params)
+    redirect_to bands_path
   end
 
   def index
@@ -25,6 +33,12 @@ class Users::BandsController < ApplicationController
     else
       redirect_to new_band_path
     end
+  end
+  
+  def destroy
+    band = Band.find(params[:id])
+    band.delete
+    redirect_to bands_path
   end
   
   private

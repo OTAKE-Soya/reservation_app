@@ -1,2 +1,18 @@
-<h1>Users::Bands#edit</h1>
-<p>Find me in app/views/users/bands/edit.html.erb</p>
+<div class="container">
+    <div class="row">
+        <h2>バンド編集</h2>
+    </div>
+    <div class="row">
+        <%= form_with model: @band, local: :ture do |f| %>
+            <div class="form-group">
+                <%= f.label "バンド名" %>
+                <%= f.text_field :name, class: "form-control" %>  
+            </div>
+            <%= f.submit %>
+        <% end %>
+    </div>
+    <div class="row">
+        <%= link_to "削除", band_path(@band), method: :delete, class: "btn btn-danger" %>
+    </div>
+    
+</div>
